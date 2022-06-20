@@ -6,6 +6,9 @@
 
 */
 const database = {
+
+
+
     walkers: [{
         id: 1,
         name: "Alphonse Meron",
@@ -57,6 +60,9 @@ const database = {
         email: "abiddle9@cafepress.com",
         
     }],
+
+
+
     pets: [{
         id: 1,
         name: "Dianemarie Hartness",
@@ -99,6 +105,8 @@ const database = {
         walkerId: 7
     }],
 
+
+
     walkerCities: [
         { id: 1, walkerId: 10, cityId: 1 },
         { id: 2, walkerId: 8, cityId: 6 },
@@ -115,6 +123,9 @@ const database = {
         { id: 13, walkerId: 5, cityId: 7 },
         { id: 14, walkerId: 10, cityId: 2 },
     ],
+
+
+
     cities: [
         { id: 1, name: "Pittsburgh"},
         { id: 2, name: "Minneapolis"},
@@ -130,7 +141,20 @@ const database = {
 
 
 
+    get getCities(){
 
+        return this.cities
+        
+    }, 
+
+    get getWalkerCities(){
+
+        
+        return this.walkerCities
+
+    },
+
+    
 
 }
 
@@ -142,3 +166,10 @@ export const getPets = () => {
     return database.pets.map(pet => ({...pet}))
 }
 
+export const getCities = () => {
+    return database.cities.map(city => ({...city}))
+}
+
+export const getWalkerCities = () => {
+    return database.walkerCities.map(assignment => ({...assignment}))
+}
