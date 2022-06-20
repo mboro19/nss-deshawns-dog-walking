@@ -1,8 +1,9 @@
 import { getCities, getWalkerCities, getWalkers } from "./database.js"
 
+
 const walkers = getWalkers()
 
-const cities = getCities()
+const citiesABC = getCities()
 const walkerCities = getWalkerCities()
 
 document.addEventListener(
@@ -11,15 +12,19 @@ document.addEventListener(
         const itemClicked = clickEvent.target
         if (itemClicked.id.startsWith("walker")) {
             const [,walkerId] = itemClicked.id.split("--")
-
+                
             for (const walker of walkers) {
                 
                 if (walker.id === parseInt(walkerId)) {
-                    window.alert(`${walker.name} services ${walkerCityAssignments.cityId}`)
+                    const assignments = getWalkerCitiesObj(walker)
+                    const cities = citiesToWalkers(assignments)
+            
+                    window.alert(`${walker.name} services${cities}`)
                 }
             }
+                }
         }
-    }
+    
 )
 
 
@@ -38,29 +43,45 @@ export const Walkers = () => {
 
 }
 
-const getWalkerCitiesObj = () => {
+const getWalkerCitiesObj = (walkerId) => {
 
-    
+    let array = [];
 
-    for(let walker of walkerCities){
+    for (let walker of walkerCities){
 
-        for (let i=0; i<walker.length; i++){
 
-            
+        if(walker.walkerId === walkerId.id){
+
+            array.push(walker)
         }
-
-        return walker
-    }
-    
     
 }
-let walkerCityAssignments = getWalkerCitiesObj()
-console.log(walkerCityAssignments)
+    return array
+    
+}
+
+export const citiesToWalkers = (assignment) => {
+
+    let cityId = ``
+
+    for (let sign of assignment){
+
+        for (let city of citiesABC){
+
+            if(city.id === sign.cityId){
+
+                cityId = `${cityId} ${city.name}`
+        }
+        
+    }
+
+}
+
+    return cityId
+}
+
 
 /*
-
-let cities = getCities()
-let walkerArray = getWalkerCities()
 
 
 

@@ -173,3 +173,4 @@ export const getCities = () => {
 export const getWalkerCities = () => {
     return database.walkerCities.map(assignment => ({...assignment}))
 }
+
